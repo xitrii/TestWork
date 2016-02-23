@@ -1,0 +1,49 @@
+<head>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/jquery-form/jquery.form.js"></script>
+    <script src="bower_components/jquery-form-validator/form-validator/jquery.form-validator.min.js"></script>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="form-container vcenter">
+                <form id="form" action="/action.php" method="POST">
+                    <div class="form-group">
+                        <input data-validation="required" placeholder="Имя" class="form-control" type="text" name="name"/>
+                    </div>
+                    <div class="form-group">
+                        <input data-validation="email" placeholder="E-mail" class="form-control" type="email" name="email"/>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input data-validation="required" name="agree" type="checkbox"> Я согласен
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-success" type="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    <script>
+        $(document).ready(function() {
+            var options = {
+                success: showResponse 
+            }
+            $("#form").ajaxForm(options);
+            $.validate({
+                modules : 'date, security'
+            });
+        });
+        function showResponse(responseText, statusText, xhr, $form)  { 
+            alert(responseText); 
+        } 
+    </script>
+</body>
